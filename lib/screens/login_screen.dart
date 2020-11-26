@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/constants.dart';
 
@@ -77,7 +78,7 @@ class LoginScreen extends StatelessWidget {
                 cursorColor: kMainColor,
                 decoration: InputDecoration(
                   prefixIcon: Icon(
-                    Icons.email,
+                    Icons.lock,
                     color: kMainColor,
                   ),
                   hintText: 'enter your password',
@@ -130,13 +131,19 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 16,
                 )
               ),
-              Text(
-                'Sign up',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                )
+              GestureDetector(
+                onTap: (){
+                  Navigator.pushNamed(context, SignupScreen.id);
+                },
+                child: Text(
+                  'Sign up',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  )
+                ),
               )
+              
             ]
           )
           ],

@@ -7,6 +7,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+      double height= MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: kMainColor ,
       body: ListView(
@@ -35,7 +36,110 @@ class LoginScreen extends StatelessWidget {
               )
             ) , 
           ),
-        ],
+          SizedBox(
+            height:height*.1,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal:30),
+            child:TextField(
+              cursorColor: kMainColor,
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.email,
+                  color: kMainColor,
+                ),
+                hintText: 'enter your email',
+                filled: true,
+                fillColor: kSecondaryColor,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Colors.blue,
+                    //width: MediaQuery.of(context).size.width*0.1
+                  )
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: Colors.white,
+                    //width: MediaQuery.of(context).size.width*0.1
+                  )
+                )               
+                )
+            )
+          ),
+          SizedBox(
+            height:height*.02,
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal:30),
+              child:TextField(
+                cursorColor: kMainColor,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.email,
+                    color: kMainColor,
+                  ),
+                  hintText: 'enter your password',
+                  filled: true,
+                  fillColor: kSecondaryColor,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      //width: MediaQuery.of(context).size.width*0.1
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                      //width: MediaQuery.of(context).size.width*0.1
+                    )
+                  )               
+                )
+              )
+            ),
+          SizedBox(
+            height:height*.05,
+          ),
+          Padding(
+              padding: const EdgeInsets.symmetric(horizontal:100),
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20) ,),
+                onPressed: (){},
+                color: Colors.black,
+                child: Text(
+                  'Login',
+                  style: TextStyle(
+                    color: Colors.white,
+                  )
+                ))
+            ),  
+          SizedBox(
+            height:height*.05,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:<Widget>[
+              Text(
+                'Don\'t have an account? ',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                )
+              ),
+              Text(
+                'Sign up',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                )
+              )
+            ]
+          )
+          ],
         ),
     );
   }

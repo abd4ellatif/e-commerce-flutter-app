@@ -49,7 +49,7 @@ class SignupScreen extends StatelessWidget {
                 validator: (value){
                     if (value.isEmpty)
                     {
-                      return 'value is empty';
+                      return 'username is empty';
                     }
                   },
                 cursorColor: kMainColor,
@@ -94,7 +94,7 @@ class SignupScreen extends StatelessWidget {
                   validator:(value){
                     if (value.isEmpty)
                     {
-                      return 'value is empty';
+                      return 'email is empty';
                     }
                   } ,
                   cursorColor: kMainColor,
@@ -139,7 +139,7 @@ class SignupScreen extends StatelessWidget {
                   validator:(value){
                     if (value.isEmpty)
                     {
-                      return 'value is empty';
+                      return 'password is empty';
                     }
                   },
                   cursorColor: kMainColor,

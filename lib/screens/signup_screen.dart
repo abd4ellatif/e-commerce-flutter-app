@@ -1,11 +1,15 @@
 import 'package:ecommerceapp/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerceapp/services/auth.dart';
 
 import '../constants.dart';
 
+// ignore: must_be_immutable
 class SignupScreen extends StatelessWidget {
   static String id='SignupScreen';
   final GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
+  String _email,_password,_user;
+  final _auth=Auth();
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +50,10 @@ class SignupScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:30),
               child:TextFormField(
+                onChanged: (value){
+                  _user=value;
+                },
+                // ignore: missing_return
                 validator: (value){
                     if (value.isEmpty)
                     {
@@ -91,6 +99,11 @@ class SignupScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal:30),
                 child:TextFormField(
+                  onChanged: (value){
+                    
+                    _email=value;
+                  },
+                  // ignore: missing_return
                   validator:(value){
                     if (value.isEmpty)
                     {
@@ -136,6 +149,10 @@ class SignupScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal:30),
                 child:TextFormField(
+                  onChanged: (value){
+                    _password=value;
+                  },
+                  // ignore: missing_return
                   validator:(value){
                     if (value.isEmpty)
                     {
@@ -183,9 +200,13 @@ class SignupScreen extends StatelessWidget {
                 child: FlatButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20) ,),
-                  onPressed: (){
+                  onPressed: ()async{
                     if(_globalKey.currentState.validate()){
                       // do kech heja
+                      print(_email);
+                      print(_password);
+                      final authResult= await _auth.signup(_email, _password);
+                      print(authResult.user.uid);
                     }
                   },
                   color: Colors.black,

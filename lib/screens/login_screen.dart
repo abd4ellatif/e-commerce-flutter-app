@@ -1,10 +1,14 @@
 import 'package:ecommerceapp/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/constants.dart';
+import 'package:ecommerceapp/services/auth.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   static String id='LoginScreen';
   final GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
+  String _email,_password;
+  final _auth=Auth();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +49,10 @@ class LoginScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal:30),
               child:TextFormField(
+                onChanged: (value){
+                  _email=value;
+                },
+                // ignore: missing_return
                 validator: (value){
                   if(value.isEmpty){
                     return 'email is empty';
@@ -63,21 +71,18 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
                       color: Colors.blue,
-                      //width: MediaQuery.of(context).size.width*0.1
                     )
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
                       color: Colors.white,
-                      //width: MediaQuery.of(context).size.width*0.1
                     )
                   ),
                   border:OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
                     borderSide: BorderSide(
                       color: Colors.white,
-                      //width: MediaQuery.of(context).size.width*0.1
                     )
                   ),
                   )
@@ -89,12 +94,17 @@ class LoginScreen extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal:30),
                 child:TextFormField(
+                  onChanged: (value){
+                  _password=value;
+                  },
+                  // ignore: missing_return
                   validator: (value){
                     if(value.isEmpty){
                       return 'password is empty';
                     }
                   },
                   cursorColor: kMainColor,
+                  obscureText: true,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.lock,
@@ -135,9 +145,13 @@ class LoginScreen extends StatelessWidget {
                 child: FlatButton(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20) ,),
-                  onPressed: (){
+                  onPressed: ()async{
                     if(_globalKey.currentState.validate()){
                       // do kech heja
+                      print(_email);
+                      print(_password);
+                      final authResult= await _auth.signin(_email, _password);
+                      print(authResult.user.uid);
                     }
                   },
                   color: Colors.black,
